@@ -1,0 +1,12 @@
+# VSCode
+.vscode
+
+# PHPStorm
+.idea
+
+# Dependencies
+vendor
+composer.lock
+
+# PHPCS
+.phpcs-cache
