@@ -10,3 +10,6 @@ composer.lock
 
 # PHPCS
 .phpcs-cache
+
+# PHPUnit
+.phpunit.result.cache
