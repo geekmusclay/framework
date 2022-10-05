@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-use GuzzleHttp\Psr7\Response;
+namespace Tests\Core;
+
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Psr7\ServerRequest;
 use Geekmusclay\Framework\Core\App;
@@ -17,7 +18,6 @@ class AppTest extends TestCase
     public function testRedirectTrailingSlash()
     {
         $request = new ServerRequest('GET', '/testslash/');
-        /** @var Response $response */
         $response = $this->app->run($request);
 
         $this->assertContains('/testslash', $response->getHeader('Location'));
