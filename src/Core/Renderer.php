@@ -6,8 +6,6 @@ namespace Geekmusclay\Framework\Core;
 
 use Exception;
 
-use function count;
-use function explode;
 use function extract;
 use function ob_get_clean;
 use function ob_start;
