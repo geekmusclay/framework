@@ -15,6 +15,6 @@ class FakeModule
     {
         $this->router = $router;
         $this->router->get('/fake', [FakeController::class, 'index'], 'fake.index');
-        $this->router->get('/fake/:id', [FakeController::class, 'show'], 'fake.show')->with([':id' => '[0-9]+']);
+        $this->router->get('/fake/:id', [FakeController::class, 'show'], 'fake.show')->with(['id' => '[0-9]+']);
     }
 }
