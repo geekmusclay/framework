@@ -2,16 +2,16 @@
 
 namespace Tests\Core;
 
-use Geekmusclay\Framework\Core\Renderer;
+use Geekmusclay\Framework\Renderer\PHPRenderer;
 use PHPUnit\Framework\TestCase;
 
 class RendererTest extends TestCase
 {
-    private Renderer $renderer;
+    private PHPRenderer $renderer;
 
     public function setUp(): void
     {
-        $this->renderer = new Renderer();
+        $this->renderer = new PHPRenderer();
     }
 
     public function testRenderPath()

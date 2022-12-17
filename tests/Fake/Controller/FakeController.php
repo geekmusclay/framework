@@ -15,8 +15,8 @@ class FakeController
         return new Response(200, [], 'Hello Fake');
     }
 
-    public function show(ServerRequestInterface $request): ResponseInterface
+    public function show(int $id): ResponseInterface
     {
-        return new Response(200, [], 'Welcome on article ' . $request->getAttribute('id'));
+        return new Response(200, [], 'Welcome on article ' . $id);
     }
 }

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Fake;
 
+use Geekmusclay\Router\Interfaces\RouterInterface;
 use Tests\Fake\Controller\FakeController;
-use Geekmusclay\Router\Router;
 
 class FakeModule
 {
-    private Router $router;
+    private RouterInterface $router;
 
-    public function __construct(Router $router)
+    public function __construct(RouterInterface $router)
     {
         $this->router = $router;
         $this->router->get('/fake', [FakeController::class, 'index'], 'fake.index');
