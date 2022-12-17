@@ -5,6 +5,7 @@ namespace Tests\Core;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Psr7\ServerRequest;
 use Geekmusclay\Framework\Core\App;
+use Geekmusclay\Router\Core\Router;
 
 class AppTest extends TestCase
 {
@@ -12,7 +13,9 @@ class AppTest extends TestCase
 
     public function setUp(): void
     {
-        $this->app = new App();
+        $this->app = new App([], [
+            'router' => new Router()
+        ]);
     }
 
     public function testRedirectTrailingSlash()

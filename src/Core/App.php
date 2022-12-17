@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Geekmusclay\Framework\Core;
 
-use Geekmusclay\Router\Router;
+use Exception;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -16,22 +16,28 @@ use function substr;
 
 class App
 {
-    /** @var array<object|string> $modules List of module to instanciate */
+    /** @var string[] $modules List of module to instanciate */
     private array $modules = [];
 
-    /** @var Router $router Application router */
-    private Router $router;
+    /** @var array<string, mixed> $config Application configuration */
+    private array $config = [];
 
     /**
      * App constructor
      *
      * @param string[] $modules List of modules to load
      */
-    public function __construct(array $modules = [])
-    {
-        $this->router = new Router();
+    public function __construct(
+        array $modules = [],
+        array $config = []
+    ) {
+        $this->config = $config;
+        if (false === isset($this->config['router'])) {
+            throw new Exception('No router defined.');
+        }
+
         foreach ($modules as $module) {
-            $this->modules[] = new $module($this->router);
+            $this->modules[] = new $module($this->config['router']);
         }
     }
 
@@ -50,25 +56,27 @@ class App
             );
         }
 
-        $route = $this->router->match($request);
-        if (null === $route) {
-            return new Response(
-                404,
-                [],
-                'Route not found'
-            );
-        }
+        return $this->config['router']->run($request);
 
-        $matches  = $route->getMatches();
-        $request  = array_reduce(
-            array_keys($matches),
-            function ($request, $key) use ($matches) {
-                return $request->withAttribute($key, $matches[$key]);
-            },
-            $request
-        );
-        $callable = $route->getCallback();
+        // $route = $this->config['router']->match($request);
+        // if (null === $route) {
+        //     return new Response(
+        //         404,
+        //         [],
+        //         'Route not found'
+        //     );
+        // }
 
-        return call_user_func_array($callable, [$request]);
+        // $matches = $route->getMatches();
+        // $request = array_reduce(
+        //     array_keys($matches),
+        //     function ($request, $key) use ($matches) {
+        //         return $request->withAttribute($key, $matches[$key]);
+        //     },
+        //     $request
+        // );
+        // $callable = $route->getCallback();
+
+        // return call_user_func_array($callable, [$request]);
     }
 }
