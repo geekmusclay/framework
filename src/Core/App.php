@@ -34,7 +34,7 @@ class App
         array $modules = []
     ) {
         $this->container = $container;
-        $this->router = $this->container->get(RouterInterface::class);
+        $this->router    = $this->container->get(RouterInterface::class);
 
         foreach ($modules as $module) {
             $this->modules[] = $this->container->get($module);

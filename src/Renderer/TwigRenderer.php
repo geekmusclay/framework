@@ -1,12 +1,12 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
 namespace Geekmusclay\Framework\Renderer;
 
+use Geekmusclay\Framework\Interfaces\RendererInterface;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use Geekmusclay\Framework\Interfaces\RendererInterface;
 
 class TwigRenderer implements RendererInterface
 {
@@ -17,15 +17,13 @@ class TwigRenderer implements RendererInterface
     private Environment $twig;
 
     /**
-     * TwigRenderer constructor.
-     *
      * @param string $path   Default path for Twig
      * @param array  $config Configuration for Twig
      */
     public function __construct(string $path, array $config = [])
     {
         $this->loader = new FilesystemLoader($path);
-        $this->twig = new Environment($this->loader, $config);
+        $this->twig   = new Environment($this->loader, $config);
     }
 
     /**

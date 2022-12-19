@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Geekmusclay\Framework\Renderer;
 
 use Exception;
+use Geekmusclay\Framework\Interfaces\RendererInterface;
 
+use function extract;
+use function ob_get_clean;
+use function ob_start;
 use function strpos;
 use function substr;
-use function extract;
-use function ob_start;
-use function ob_get_clean;
 
 use const DIRECTORY_SEPARATOR;
-use Geekmusclay\Framework\Interfaces\RendererInterface;
 
 class PHPRenderer implements RendererInterface
 {
@@ -24,8 +24,6 @@ class PHPRenderer implements RendererInterface
     private array $paths = [];
 
     /**
-     * Renderer constructor.
-     *
      * @param string|null $defaultPath Default path to views
      */
     public function __construct(?string $defaultPath = null)
