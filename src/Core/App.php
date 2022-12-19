@@ -7,6 +7,7 @@ namespace Geekmusclay\Framework\Core;
 use Geekmusclay\DI\Core\Container;
 use Geekmusclay\Router\Interfaces\RouterInterface;
 use GuzzleHttp\Psr7\Response;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -14,8 +15,10 @@ use function substr;
 
 class App
 {
+    /** @var ContainerInterface $container Application DI container */
     private Container $container;
 
+    /** @var RouterInterface $router Application router */
     private RouterInterface $router;
 
     /** @var string[] $modules List of module to instanciate */
@@ -40,6 +43,9 @@ class App
 
     /**
      * Application run function
+     *
+     * @param ServerRequestInterface $request The request to be processed
+     * @return ResponseInterface The response to send
      */
     public function run(ServerRequestInterface $request): ResponseInterface
     {
