@@ -4,23 +4,22 @@ declare(strict_types=1);
 
 namespace Geekmusclay\Framework\Core;
 
-use Exception;
+use Geekmusclay\DI\Core\Container;
+use Geekmusclay\Router\Interfaces\RouterInterface;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-use function array_keys;
-use function array_reduce;
-use function call_user_func_array;
 use function substr;
 
 class App
 {
+    private Container $container;
+
+    private RouterInterface $router;
+
     /** @var string[] $modules List of module to instanciate */
     private array $modules = [];
-
-    /** @var array<string, mixed> $config Application configuration */
-    private array $config = [];
 
     /**
      * App constructor
@@ -28,16 +27,15 @@ class App
      * @param string[] $modules List of modules to load
      */
     public function __construct(
-        array $modules = [],
-        array $config = []
+        Container $container,
+        RouterInterface $router,
+        array $modules = []
     ) {
-        $this->config = $config;
-        if (false === isset($this->config['router'])) {
-            throw new Exception('No router defined.');
-        }
+        $this->container = $container;
+        $this->router = $router;
 
         foreach ($modules as $module) {
-            $this->modules[] = new $module($this->config['router']);
+            $this->modules[] = $this->container->get($module);
         }
     }
 
@@ -56,27 +54,6 @@ class App
             );
         }
 
-        return $this->config['router']->run($request);
-
-        // $route = $this->config['router']->match($request);
-        // if (null === $route) {
-        //     return new Response(
-        //         404,
-        //         [],
-        //         'Route not found'
-        //     );
-        // }
-
-        // $matches = $route->getMatches();
-        // $request = array_reduce(
-        //     array_keys($matches),
-        //     function ($request, $key) use ($matches) {
-        //         return $request->withAttribute($key, $matches[$key]);
-        //     },
-        //     $request
-        // );
-        // $callable = $route->getCallback();
-
-        // return call_user_func_array($callable, [$request]);
+        return $this->router->run($request);
     }
 }
