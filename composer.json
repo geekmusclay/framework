@@ -17,20 +17,26 @@
     ],
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/geekmusclay/router.git"
+            "type": "path",
+            "url": "../router"
         },
         {
             "type": "vcs",
             "url": "https://github.com/geekmusclay/orm.git"
+        },
+        {
+            "type": "path",
+            "url": "../di-container"
         }
     ],
     "require": {
         "php": "^7.4",
         "guzzlehttp/psr7": "^2.4",
         "http-interop/response-sender": "^1.0",
-        "geekmusclay/router": "^0.1.1",
-        "geekmusclay/orm": "^0.0.1"
+        "geekmusclay/router": "^0.2.1",
+        "geekmusclay/orm": "^0.0.1",
+        "twig/twig": "^3.4",
+        "geekmusclay/di-container": "^0.1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
