@@ -11,10 +11,10 @@ interface RendererInterface
      * If the namespace is left empty, the function will assume that
      * the given path is the root.
      *
-     * @param string      $path      Path to add
-     * @param string|null $namespace (OPTIONAL) Namespace related to the path
+     * @param string $path      Path to add
+     * @param string $namespace Namespace related to the path
      */
-    public function add(string $path, ?string $namespace = null): self;
+    public function add(string $path, string $namespace): self;
 
     /**
      * Render function.
