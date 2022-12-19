@@ -28,11 +28,10 @@ class App
      */
     public function __construct(
         Container $container,
-        RouterInterface $router,
         array $modules = []
     ) {
         $this->container = $container;
-        $this->router = $router;
+        $this->router = $this->container->get(RouterInterface::class);
 
         foreach ($modules as $module) {
             $this->modules[] = $this->container->get($module);
