@@ -1,6 +1,7 @@
 {
     "name": "geekmusclay/framework",
     "type": "project",
+    "version": "0.0.1",
     "license": "MIT",
     "autoload": {
         "psr-4": {

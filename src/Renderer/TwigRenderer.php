@@ -13,17 +13,17 @@ class TwigRenderer implements RendererInterface
     /** @var FilesystemLoader $loader Twig loader */
     private FilesystemLoader $loader;
 
-    /** @var Environment $twig Twig environment */
-    private Environment $twig;
+    /** @var Environment $env Twig environment */
+    private Environment $env;
 
     /**
      * @param string $path   Default path for Twig
      * @param array  $config Configuration for Twig
      */
-    public function __construct(string $path, array $config = [])
+    public function __construct(FilesystemLoader $loader, Environment $env)
     {
-        $this->loader = new FilesystemLoader($path);
-        $this->twig   = new Environment($this->loader, $config);
+        $this->loader = $loader;
+        $this->env    = $env;
     }
 
     /**
@@ -49,7 +49,7 @@ class TwigRenderer implements RendererInterface
      */
     public function addGlobal(string $key, $value): self
     {
-        $this->twig->addGlobal($key, $value);
+        $this->env->addGlobal($key, $value);
 
         return $this;
     }
@@ -63,6 +63,6 @@ class TwigRenderer implements RendererInterface
      */
     public function render(string $view, array $parameters = [])
     {
-        return $this->twig->render($view, $parameters);
+        return $this->env->render($view, $parameters);
     }
 }
