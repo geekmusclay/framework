@@ -24,7 +24,7 @@ class TwigExtension extends AbstractExtension
         ];
     }
 
-    public function path(string $name, array $params): string
+    public function path(string $name, array $params = []): string
     {
         return $this->router->path($name, $params);
     }
