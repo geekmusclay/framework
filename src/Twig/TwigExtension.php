@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Geekmusclay\Framework\Twig;
 
-use Twig\TwigFunction;
-use Twig\Extension\AbstractExtension;
 use Geekmusclay\Router\Interfaces\RouterInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 class TwigExtension extends AbstractExtension
 {
@@ -17,7 +17,7 @@ class TwigExtension extends AbstractExtension
         $this->router = $router;
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('path', [$this, 'path']),
