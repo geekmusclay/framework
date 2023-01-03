@@ -18,16 +18,16 @@
     ],
     "repositories": [
         {
-            "type": "path",
-            "url": "../router"
+            "type": "vcs",
+            "url": "https://github.com/geekmusclay/router.git"
         },
         {
             "type": "vcs",
             "url": "https://github.com/geekmusclay/orm.git"
         },
         {
-            "type": "path",
-            "url": "../di-container"
+            "type": "vcs",
+            "url": "https://github.com/geekmusclay/di-container.git"
         }
     ],
     "require": {
