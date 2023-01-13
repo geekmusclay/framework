@@ -12,6 +12,10 @@ use Twig\Loader\FilesystemLoader;
 
 class TwigRendererFactory
 {
+    private ?FilesystemLoader $loader = null;
+
+    private ?Environment $twig = null;
+
     public function __invoke(ContainerInterface $container): TwigRenderer
     {
         $path   = $container->get('view.path');
