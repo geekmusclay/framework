@@ -35,7 +35,7 @@
         "guzzlehttp/psr7": "^2.4",
         "http-interop/response-sender": "^1.0",
         "geekmusclay/router": "^0.3",
-        "geekmusclay/orm": "^0.0.1",
+        "geekmusclay/orm": "^0.2",
         "twig/twig": "^3.4",
         "geekmusclay/di-container": "^0.1.0"
     },
