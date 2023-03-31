@@ -126,6 +126,17 @@ class App
     }
 
     /**
+     * Registers a class / controller containing routes declared
+     * using the "Route" attribute
+     *
+     * @param string $class The class to register
+     */
+    public function register(string $class): bool
+    {
+        return $this->router->register($class);
+    }
+
+    /**
      * Application run function
      *
      * @param ServerRequestInterface $request The request to be processed
