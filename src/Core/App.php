@@ -131,9 +131,22 @@ class App
      *
      * @param string $class The class to register
      */
-    public function register(string $class): bool
+    public function register(string $class): void
     {
-        return $this->router->register($class);
+        $this->router->register($class);
+    }
+
+    /**
+     * Starts the "register" function on all files that will be found in the given folder,
+     * as well as in all subfolders.
+     *
+     * @param  string $path      The path to the root directory
+     * @param  string $namespace The root namespace
+     * @return array             Return an array of result for the needs of the recursive feature
+     */
+    public function registerDir(string $path, string $namespace): array
+    {
+        return $this->router->registerDir($path, $namespace);
     }
 
     /**
