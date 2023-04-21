@@ -32,7 +32,10 @@ class Encrypter
     }
 
     /**
-     * This function will encrypt the id
+     * This function will encrypt the id so he can be shared by url.
+     *
+     * @param int $id The id to encrypt
+     * @return string The encrypted id
      */
     public function encrypt(int $id): string
     {
@@ -43,6 +46,9 @@ class Encrypter
 
     /**
      * This function will decrypt the id
+     *
+     * @params string $id The encrypted id
+     * @return int Return -1 if an error occured, the decryptec id otherwise
      */
     public function decrypt(string $encoded): int
     {
