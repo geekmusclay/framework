@@ -43,7 +43,7 @@ class TwigExtension extends AbstractExtension
     /**
      * The custom Twig filters.
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('encrypt', [$this, 'encrypt']),
@@ -56,7 +56,7 @@ class TwigExtension extends AbstractExtension
      *
      * @param string  $name   The name of the route
      * @param mixed[] $params The params that are passed in the url
-     * @throws Exception Throw exception when route does not exist
+     * @throws Exception
      */
     public function path(string $name, array $params = []): string
     {
@@ -65,7 +65,7 @@ class TwigExtension extends AbstractExtension
 
     /**
      * This function will encrypt the id so he can be shared by url.
-     * 
+     *
      * @param int $id The id to encrypt
      * @return string The encrypted id
      */

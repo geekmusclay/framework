@@ -10,10 +10,14 @@ use Geekmusclay\Router\Interfaces\RouterInterface;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface;
 
+use function array_merge;
+use function array_unique;
+use function json_encode;
+
 abstract class AbstractController
 {
     const JSON_HEADERS = [
-        'Content-Type' => 'application/json'
+        'Content-Type' => 'application/json',
     ];
 
     /** @var RendererInterface $renderer Defdault renderer */
@@ -39,7 +43,6 @@ abstract class AbstractController
      *
      * @param ServerRequestInterface $request The server request
      * @param string                 $name    The name of the route to execute
-     * @return mixed
      */
     protected function redirect(ServerRequestInterface $request, string $name): mixed
     {
@@ -52,11 +55,10 @@ abstract class AbstractController
      * @param string $path    Path to the file
      * @param array  $params  Params to pass to the view
      * @param array  $headers Headers of the response
-     * @return Response
      */
     protected function render(
         string $path,
-        array $params  = [],
+        array $params = [],
         array $headers = []
     ): Response {
         $body = $this->renderer->render($path, $params);
@@ -72,7 +74,6 @@ abstract class AbstractController
      * @param array       $headers The response headers
      * @param string      $version Protocol version
      * @param string|null $reason  Reason phrase (when empty a default will be used based on the status code)
-     * @return JsonResponse
      */
     protected function json(
         array $body = [],
@@ -81,7 +82,7 @@ abstract class AbstractController
         string $version = '1.1',
         ?string $reason = null
     ): JsonResponse {
-        $data = json_encode($body);
+        $data    = json_encode($body);
         $headers = array_merge(self::JSON_HEADERS, $headers);
         $headers = array_unique($headers);
 

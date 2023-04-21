@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace Geekmusclay\Framework\Core;
 
-use function substr;
-use GuzzleHttp\Psr7\Response;
 use Geekmusclay\DI\Core\Container;
+use Geekmusclay\Router\Interfaces\RouterInterface;
+use Geekmusclay\Router\Proxies\RouterProxy;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
-use Geekmusclay\Router\Proxies\RouterProxy;
-
 use Psr\Http\Message\ServerRequestInterface;
-use Geekmusclay\Router\Interfaces\RouterInterface;
 
 class App
 {
