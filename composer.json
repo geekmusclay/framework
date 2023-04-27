@@ -19,25 +19,17 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../router"
-        },
-        {
-            "type": "path",
             "url": "../orm"
-        },
-        {
-            "type": "path",
-            "url": "../di-container"
         }
     ],
     "require": {
         "php": "^8.0",
         "guzzlehttp/psr7": "^2.4",
         "http-interop/response-sender": "^1.0",
-        "geekmusclay/router": "^0.4.1",
-        "geekmusclay/orm": "^0.2",
+        "geekmusclay/router": "^0.5",
+        "geekmusclay/orm": "^0.3",
         "twig/twig": "^3.4",
-        "geekmusclay/di-container": "^0.1.0"
+        "geekmusclay/di-container": "^0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
