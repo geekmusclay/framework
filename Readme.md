@@ -6,12 +6,14 @@ Create a `.htaccess` file with :
 ```
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L,NC]
 ```
 
 Create a `.env` file with : 
 ```
-DATABASE_URL=mysql:host=localhost;dbname=test_api
+APP_ENV=dev
+DATABASE_URL=mysql:host=localhost;dbname=test
 DATABASE_USER=root
 DATABASE_PASSWORD=
 ```
@@ -47,7 +49,15 @@ $app = new App($container, [
     BlogModule::class
 ]);
 
+$app->get('/', function () {
+    return new Response(200, [], 'Welcome on my app');
+});
+
 $response = $app->run(ServerRequest::fromGlobals());
 
-send($response);
+try {
+    $response = $app->run(ServerRequest::fromGlobals());
+} catch (Throwable $e) {
+    dd($e);
+}
 ```
