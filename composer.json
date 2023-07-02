@@ -1,7 +1,7 @@
 {
     "name": "geekmusclay/framework",
     "type": "library",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "license": "MIT",
     "autoload": {
         "psr-4": {
