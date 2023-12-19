@@ -8,7 +8,7 @@ use Twig\TwigFilter;
 use Twig\TwigFunction;
 use Twig\Extension\AbstractExtension;
 use Geekmusclay\Framework\Core\Encrypter;
-use Geekmusclay\Framework\WebpackHandler;
+use Geekmusclay\Framework\Handler\WebpackHandler;
 use Geekmusclay\Router\Interfaces\RouterInterface;
 
 class TwigExtension extends AbstractExtension
